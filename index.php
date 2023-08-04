@@ -62,11 +62,11 @@
 
                 include('db/db_connect.php');
 
-                // For Edit Data
-                $id = $_GET['id'];
-                $query_update = "SELECT * FROM task WHERE id = '$id'";
-                $result = mysqli_query($connection, $query_update);
-                $row_update = mysqli_fetch_array($result);
+                // // For Edit Data
+                // $id = $_GET['id'];
+                // $query_update = "SELECT * FROM task WHERE id = '$id'";
+                // $result = mysqli_query($connection, $query_update);
+                // $row_update = mysqli_fetch_array($result);
 
                 //For Read Data
                 $no = 1;
@@ -84,9 +84,9 @@
                     <span class="badge text-bg-primary" style="color: black;">Done</span>
                 </td>
                 <td>
-                    <a href="" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">Update Task</a>
+                    <a href="" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row['id']; ?>">Update Task</a>
 
-                        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="updateModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -97,15 +97,15 @@
                                 <form action="process/db_update.php" method="POST">
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Task</label>
-                                        <input name="task_name" value="<?php echo $row_update['task_name'] ?>" type="text" class="form-control" id="recipient-name">
+                                        <input name="task_name" value="<?php echo $row['task_name'] ?>" type="text" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Description</label>
-                                        <textarea name="task_description"class="form-control" id="message-text"><?php echo $row_update['task_description'] ?></textarea>
+                                        <textarea name="task_description"class="form-control" id="message-text"><?php echo $row['task_description'] ?></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Deadline</label>
-                                        <input type="date" name="task_deadline" value="<?php echo $row_update['task_deadline'] ?>">
+                                        <input type="date" name="task_deadline" value="<?php echo $row['task_deadline'] ?>">
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="flexCheckDefault">
