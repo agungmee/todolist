@@ -59,14 +59,10 @@
             <tbody>
 
                 <?php
+                
+                //Script for Edit Data
 
                 include('db/db_connect.php');
-
-                // // For Edit Data
-                // $id = $_GET['id'];
-                // $query_update = "SELECT * FROM task WHERE id = '$id'";
-                // $result = mysqli_query($connection, $query_update);
-                // $row_update = mysqli_fetch_array($result);
 
                 //For Read Data
                 $no = 1;
@@ -81,7 +77,7 @@
                 <td><?php echo $row['task_description'] ?></td>
                 <td><?php echo $row['task_deadline'] ?></td>
                 <td >
-                    <span class="badge text-bg-primary" style="color: black;">Done</span>
+                    <span class="badge text-bg-primary" style="color: black;"><?php echo $row['status'] ?></span>
                 </td>
                 <td>
                     <a href="" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row['id']; ?>">Update Task</a>
@@ -98,6 +94,7 @@
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Task</label>
                                         <input name="task_name" value="<?php echo $row['task_name'] ?>" type="text" class="form-control" id="recipient-name">
+                                        <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Description</label>
@@ -108,7 +105,7 @@
                                         <input type="date" name="task_deadline" value="<?php echo $row['task_deadline'] ?>">
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="flexCheckDefault">
+                                        <input name="task_status" class="form-check-input" type="checkbox" id="flexCheckDefault" <?php echo $row['status'] == 'Done' ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="flexCheckDefault">
                                             Task Done
                                         </label>
@@ -123,7 +120,7 @@
                         </div>
                         </div>
 
-                    <a href="" class="btn btn-sm btn-danger">Delete Task</a>
+                    <a href="process/db_delete.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger">Delete Task</a>
                 </td>
                 </tr>
                 

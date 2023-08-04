@@ -1,3 +1,4 @@
 Masih ada issue di update :
 
-Issue karena mau pakai update dengan modal, tapi id tidak terpanggil dan perintahnya menumpuk
+Issue karena mau pakai update dengan modal, tapi id tidak terpanggil dan perintahnya menumpuk (DONE)
+ALL DONE
